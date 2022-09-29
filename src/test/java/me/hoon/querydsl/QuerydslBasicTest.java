@@ -444,5 +444,18 @@ public class QuerydslBasicTest {
         System.out.println(result);
     }
 
+    //distinct
+    @Test
+    public void distinct() {
+        List<Team> result = queryFactory
+                .select(team).distinct()
+                .from(team)
+                .join(team.members, member).fetchJoin()
+                .fetch();
+
+        for (Team team : result) {
+            System.out.println(team);
+        }
+    }
 
 }
